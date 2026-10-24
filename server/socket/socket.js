@@ -2,12 +2,22 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const {Server} = require("socket.io");
+require("dotenv").config();
+
+const allowedOrigins = Array.from(
+  new Set([
+    "http://localhost:5173",
+    ...(process.env.CLIENT_URL
+      ? process.env.CLIENT_URL.split(",").map((url) => url.trim().replace(/\/+$/, "")).filter(Boolean)
+      : []),
+  ])
+);
 
 const server = http.createServer(app);
 
 const io = new Server(server,{
     cors:{
-        origin:"*",
+        origin: allowedOrigins,
         methods:["GET","POST"],
         credentials:true,
     }
@@ -37,4 +47,4 @@ const io = new Server(server,{
     
 });
 
-module.exports = {app,server,io,getReciverSocketId};
+module.exports = {app,server,io,getReciverSocketId,allowedOrigins};

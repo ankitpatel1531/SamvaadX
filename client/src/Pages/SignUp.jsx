@@ -164,7 +164,7 @@ const SignUp = () => {
             </button>
 
             {loading && (
-              <i class="fa-solid fa-spinner -ml-8 text-black animate-spin"></i>
+              <i className="fa-solid fa-spinner -ml-8 text-black animate-spin"></i>
             )}
           </div>
         </form>

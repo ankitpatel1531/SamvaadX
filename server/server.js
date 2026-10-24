@@ -5,11 +5,18 @@ const PORT = process.env.PORT || 4000;
 const authRoute = require("./routes/authRoute");
 const messageRoute = require("./routes/messageRoute");
 const cors = require("cors");
-const { app, server } = require('./socket/socket');
+const { app, server, allowedOrigins } = require('./socket/socket');
 
 
-app.use(cors());
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true,
+}));
 app.use(express.json());
+
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+});
 
 // mount the route
 app.use("/api/v1",authRoute)

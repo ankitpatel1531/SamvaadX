@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import SignUp from './Pages/SignUp'
-import { createBrowserRouter, data, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import Login from './Pages/Login'
 import Home from './Pages/Home'
 import { Toaster } from 'react-hot-toast'
